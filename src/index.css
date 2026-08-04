@@ -1,0 +1,142 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: 0 0% 98%;
+  --foreground: 222 20% 12%;
+
+  --card: 0 0% 100%;
+  --card-foreground: 222 20% 12%;
+
+  --popover: 0 0% 100%;
+  --popover-foreground: 222 20% 12%;
+
+  --primary: 152 76% 30%;
+  --primary-foreground: 0 0% 100%;
+
+  --secondary: 150 20% 94%;
+  --secondary-foreground: 222 20% 12%;
+
+  --muted: 150 15% 94%;
+  --muted-foreground: 222 10% 40%;
+
+  --accent: 150 40% 90%;
+  --accent-foreground: 152 76% 22%;
+
+  --destructive: 0 72% 51%;
+  --destructive-foreground: 0 0% 100%;
+
+  --border: 150 15% 88%;
+  --input: 150 15% 88%;
+  --ring: 152 76% 30%;
+
+  --radius: 0.75rem;
+}
+
+.dark {
+  --background: 240 10% 3.9%;
+  --foreground: 150 20% 92%;
+
+  --card: 220 18% 8%;
+  --card-foreground: 150 20% 92%;
+
+  --popover: 220 18% 7%;
+  --popover-foreground: 150 20% 92%;
+
+  --primary: 150 100% 45%;
+  --primary-foreground: 220 20% 6%;
+
+  --secondary: 220 14% 14%;
+  --secondary-foreground: 150 20% 92%;
+
+  --muted: 217 20% 15%;
+  --muted-foreground: 150 8% 62%;
+
+  --accent: 150 60% 14%;
+  --accent-foreground: 150 100% 70%;
+
+  --destructive: 0 63% 40%;
+  --destructive-foreground: 0 0% 100%;
+
+  --border: 217 20% 18%;
+  --input: 217 20% 18%;
+  --ring: 150 100% 45%;
+}
+
+* { border-color: hsl(var(--border)); }
+
+html { scroll-behavior: smooth; }
+
+body {
+  background-color: hsl(var(--background));
+  color: hsl(var(--foreground));
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  transition: background-color .3s ease, color .3s ease;
+}
+
+::selection { background: hsl(var(--primary) / 0.25); color: hsl(var(--foreground)); }
+
+/* faint circuit-board dot grid, very low opacity */
+.bg-grid {
+  background-image: radial-gradient(hsl(var(--primary) / 0.18) 1px, transparent 1px);
+  background-size: 28px 28px;
+}
+
+.font-display { font-family: 'Space Grotesk', 'Inter', sans-serif; }
+.font-mono { font-family: 'JetBrains Mono', 'SF Mono', 'Fira Code', monospace; }
+
+.text-glow {
+  text-shadow: 0 0 24px hsl(var(--primary) / 0.45), 0 0 60px hsl(var(--primary) / 0.15);
+}
+
+.glass-panel {
+  background: hsl(var(--card) / 0.55);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid hsl(var(--border));
+}
+
+.glass-card {
+  background: hsl(var(--card) / 0.6);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid hsl(var(--border));
+  border-radius: var(--radius);
+  transition: transform .3s ease, border-color .3s ease, box-shadow .3s ease;
+}
+.glass-card:hover {
+  transform: translateY(-6px);
+  border-color: hsl(var(--primary) / 0.5);
+  box-shadow: 0 20px 48px hsl(var(--primary) / 0.12);
+}
+
+.btn-primary {
+  display: inline-flex; align-items: center; gap: .5rem;
+  padding: .9rem 1.9rem; border-radius: .6rem;
+  background: hsl(var(--primary)); color: hsl(var(--primary-foreground));
+  font-weight: 600; font-size: .92rem; transition: all .25s ease;
+  box-shadow: 0 0 0 hsl(var(--primary) / 0);
+}
+.btn-primary:hover { transform: translateY(-3px); box-shadow: 0 12px 32px hsl(var(--primary) / 0.35); }
+
+.btn-outline {
+  display: inline-flex; align-items: center; gap: .5rem;
+  padding: .9rem 1.9rem; border-radius: .6rem;
+  border: 1px solid hsl(var(--primary) / 0.5); color: hsl(var(--primary));
+  font-weight: 600; font-size: .92rem; transition: all .25s ease;
+}
+.btn-outline:hover { background: hsl(var(--primary) / 0.1); transform: translateY(-3px); }
+
+.section-num {
+  font-family: 'JetBrains Mono', monospace; color: hsl(var(--primary));
+  font-size: .95rem; font-weight: 600; margin-right: .6rem;
+}
+
+.animate-on-scroll { opacity: 0; transform: translateY(28px); transition: opacity .7s ease, transform .7s ease; }
+.animate-on-scroll.is-visible { opacity: 1; transform: none; }
+
+::-webkit-scrollbar { width: 10px; }
+::-webkit-scrollbar-track { background: hsl(var(--background)); }
+::-webkit-scrollbar-thumb { background: hsl(var(--primary) / 0.35); border-radius: 6px; }
+::-webkit-scrollbar-thumb:hover { background: hsl(var(--primary) / 0.6); }
