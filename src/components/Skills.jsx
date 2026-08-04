@@ -57,7 +57,7 @@ export default function Skills() {
         <Reveal as="span" className="eyebrow" style={{ display: 'inline-flex' }}>Expertise</Reveal>
         <Reveal as="h2" className="h-xl">Skills &amp; tools.</Reveal>
 
-        <div style={{ marginTop: 'var(--s-xxl)', borderTop: '1px solid var(--line-soft)' }}>
+        <div style={{ marginTop: 'var(--s-xxl)', borderTop: '1px solid var(--rule)' }}>
           {GROUPS.map((g) => (
             <Reveal as="div" className="skill-row" key={g.title}>
               <h3 className="h-md">{g.title}</h3>

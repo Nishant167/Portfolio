@@ -71,8 +71,7 @@ function ProjectCard({ p }) {
   return (
     <Reveal
       as="article"
-      className="card"
-      style={p.featured ? { background: 'linear-gradient(155deg, rgba(139,92,246,.16), rgba(109,40,217,.08))', borderColor: 'var(--line)' } : undefined}
+      className={`card ${p.featured ? 'card-featured' : ''}`}
     >
       <span className="card-eyebrow">{p.id}</span>
       <h4 className="card-title">{p.title}</h4>

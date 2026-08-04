@@ -17,21 +17,22 @@ export default function About() {
     <section id="about" className="section">
       <div className="container">
         <Reveal as="span" className="eyebrow" style={{ display: 'inline-flex' }}>About</Reveal>
-        <Reveal as="h2" className="h-xl">Bridging QA precision with applied AI.</Reveal>
+        <Reveal as="h2" className="h-xl">Data QA by day. AI evaluation on the side.</Reveal>
 
         <div className="grid grid-2" style={{ marginTop: 'var(--s-xxl)', alignItems: 'start' }}>
           <Reveal>
             <p className="body-copy" style={{ marginBottom: 'var(--s-md)' }}>
-              I'm <strong style={{ color: 'var(--ink)', fontWeight: 600 }}>Nishant</strong> — a QA
-              professional with 7+ years of experience in software testing, specialising in data
-              validation, API testing, functional and performance testing. Currently at PGD India,
-              I handle end-to-end QA across complex data pipelines and cloud environments.
+              Seven years in, the job still comes down to one question: is this data actually
+              correct? At PGD India, I design and run test cases across multiple data sources,
+              write the SQL that catches discrepancies before they become someone else's incident,
+              and support migrations and performance testing end to end.
             </p>
             <p className="body-copy">
-              I'm pursuing my M.Tech in AI &amp; ML from BITS Pilani (WILP), with hands-on coursework
-              in NLP Applications, Large Language Models &amp; GenAI, Conversational AI, and API-Driven
-              Cloud Native Solutions — bridging deep QA expertise with growing AI/ML skills to
-              contribute to data-quality, testing, and intelligent-system workflows.
+              I'm now doing an M.Tech in AI &amp; ML at BITS Pilani — coursework in NLP, LLMs and
+              GenAI, conversational AI, and API-driven cloud-native systems. It's the same instinct
+              as QA, aimed at newer systems: can this model actually do what it claims, and how do
+              you prove it. That question is what pulled me into RAG evaluation — RAGAS, MRR,
+              nDCG — instead of just building models and hoping.
             </p>
             <div className="tags">
               {TAGS.map((t) => <span className="tag" key={t}>{t}</span>)}

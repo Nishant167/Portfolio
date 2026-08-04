@@ -33,7 +33,7 @@ export default function Navbar() {
           ))}
         </ul>
         <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--s-sm)' }}>
-          <a href="#contact" className="btn btn-ghost">Get in touch</a>
+          <a href="#contact" className="link-underline nav-cta" style={{ fontSize: 14 }}>Get in touch</a>
           <button
             type="button"
             className="hamburger"
