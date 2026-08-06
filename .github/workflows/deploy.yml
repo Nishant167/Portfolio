@@ -38,3 +38,8 @@ jobs:
     steps:
       - id: deployment
         uses: actions/deploy-pages@v4
+        with:
+          # This repo's Pages activation has been running well past the
+          # action's 10-minute default (600000ms) during a recent owner
+          # rename; give it more headroom instead of failing prematurely.
+          timeout: 1800000
