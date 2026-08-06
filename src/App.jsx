@@ -1,5 +1,6 @@
 import Navbar from './components/Navbar.jsx';
 import Hero from './components/Hero.jsx';
+import PipelineDivider from './components/PipelineDivider.jsx';
 import About from './components/About.jsx';
 import Work from './components/Work.jsx';
 import Experience from './components/Experience.jsx';
@@ -14,6 +15,7 @@ export default function App() {
       <Navbar />
       <main id="main">
         <Hero />
+        <PipelineDivider />
         <About />
         <Work />
         <Experience />

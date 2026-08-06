@@ -48,7 +48,7 @@ export default function Contact() {
               </div>
               <div className="form-actions">
                 <button type="submit" className="btn btn-primary" disabled={status === 'sending'}>
-                  {status === 'sending' ? 'Sending…' : 'Send Message'}
+                  <span className="prompt" aria-hidden="true">$</span> {status === 'sending' ? 'sending...' : 'send-message'}
                 </button>
                 <span className="form-status" role="status">
                   {status === 'sent' && (
