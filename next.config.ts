@@ -6,6 +6,10 @@ const nextConfig: NextConfig = {
   turbopack: {
     root: path.join(__dirname),
   },
+  // Static export for GitHub Pages
+  output: "export",
+  basePath: "",
+  trailingSlash: true,
 };
 
 export default nextConfig;
