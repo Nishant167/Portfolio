@@ -31,7 +31,7 @@ export const SERVICES: Service[] = [
     description:
       "Native and cross-platform mobile applications with seamless user experience and robust backend integration",
     icon: Smartphone,
-    accent: "sand",
+    accent: "terracotta",
   },
   {
     name: "AI Solutions",
@@ -52,7 +52,7 @@ export const SERVICES: Service[] = [
     description:
       "Data validation, reconciliation automation, and integrity testing for large-scale datasets",
     icon: Zap,
-    accent: "sand",
+    accent: "forest",
   },
   {
     name: "Design & UI/UX",
