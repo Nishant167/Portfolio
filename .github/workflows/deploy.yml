@@ -23,7 +23,8 @@ jobs:
         with:
           node-version: '22'
           cache: 'npm'
-      - run: npm ci --legacy-peer-deps
+      - run: rm package-lock.json || true
+      - run: npm install --force
       - run: npm run build
       - uses: actions/upload-pages-artifact@v3
         with:
