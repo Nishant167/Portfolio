@@ -1,0 +1,660 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nishant Pahwa — QA Analyst &amp; AI/ML Researcher</title>
+<meta name="description" content="Nishant Pahwa — Senior QA Analyst &amp; AI/ML Researcher">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%230b0b0b'/%3E%3Ccircle cx='16' cy='16' r='7' fill='%23f36458'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;425;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+
+/* ============================================================
+   Tokens transcribed directly from DESIGN.md (Sanity analysis)
+   ============================================================ */
+:root{
+  /* colors */
+  --brand:#f36458;
+  --brand-deep:#dd0000;
+  --ink:#0b0b0b;
+  --ink-soft:#212121;
+  --graphite:#353535;
+  --slate:#3c4758;
+  --slate-soft:#505b6c;
+  --mute:#797979;
+  --ash:#b9b9b9;
+  --hairline:#ededed;
+  --hairline-soft:#353535;
+  --canvas:#0b0b0b;
+  --canvas-soft:#212121;
+  --canvas-light:#ffffff;
+  --canvas-paper:#ededed;
+  --on-primary:#ffffff;
+  --link-blue:#0052ef;
+  --link-blue-soft:#55beff;
+  --success:#37cd84;
+
+  /* spacing */
+  --s-xxs:4px; --s-xs:8px; --s-sm:12px; --s-md:16px; --s-lg:24px;
+  --s-xl:32px; --s-xxl:48px; --s-section:64px; --s-section-lg:96px;
+
+  /* radius */
+  --r-none:0px; --r-app-xs:3px; --r-app-sm:4px; --r-app-md:5px;
+  --r-app-lg:6px; --r-marketing:12px; --r-full:99999px;
+
+  /* type — Inter is the substitute documented in DESIGN.md,
+     with tracking pulled 0.5px tighter at display sizes */
+  --sans:'Inter',-apple-system,BlinkMacSystemFont,'Helvetica Neue',Arial,sans-serif;
+  --mono:'IBM Plex Mono',ui-monospace,monospace;
+
+  --container:1640px;
+  --ease:cubic-bezier(.2,0,0,1);
+}
+
+*{ margin:0; padding:0; box-sizing:border-box; }
+html{ scroll-behavior:smooth; scroll-padding-top:64px; }
+@media (prefers-reduced-motion:reduce){
+  html{ scroll-behavior:auto; }
+  *{ animation:none !important; transition-duration:.001ms !important; }
+}
+body{
+  background:var(--canvas); color:var(--on-primary);
+  font-family:var(--sans); font-size:16px; font-weight:400; line-height:1.5;
+  -webkit-font-smoothing:antialiased;
+}
+a{ color:inherit; text-decoration:none; }
+ul{ list-style:none; }
+::selection{ background:var(--brand); color:var(--ink); }
+/* focus ring per DESIGN.md: 2px link-blue */
+:focus-visible{ outline:2px solid var(--link-blue-soft); outline-offset:2px; }
+.on-light :focus-visible{ outline-color:var(--link-blue); }
+
+.skip{ position:absolute; left:16px; top:-60px; z-index:200; background:var(--canvas-light); color:var(--ink);
+  padding:12px 24px; border-radius:var(--r-full); font-size:16px; font-weight:500; transition:top .2s var(--ease); }
+.skip:focus{ top:16px; }
+
+.container{ max-width:var(--container); margin:0 auto; padding-left:var(--s-lg); padding-right:var(--s-lg); }
+@media (min-width:1200px){ .container{ padding-left:var(--s-xxl); padding-right:var(--s-xxl); } }
+
+/* ============ TYPE SCALE ============ */
+.display-mega{ font-size:112px; font-weight:400; line-height:1.0; letter-spacing:-5.0px; }
+.display-xl{ font-size:72px; font-weight:400; line-height:1.05; letter-spacing:-3.2px; }
+.display-md{ font-size:48px; font-weight:400; line-height:1.08; letter-spacing:-2.0px; }
+.display-sm{ font-size:38px; font-weight:400; line-height:1.10; letter-spacing:-1.4px; }
+.heading-md{ font-size:32px; font-weight:425; line-height:1.13; letter-spacing:-0.6px; }
+.heading-sm{ font-size:24px; font-weight:400; line-height:1.10; letter-spacing:-0.5px; }
+.subtitle{ font-size:18px; font-weight:400; line-height:1.5; letter-spacing:-0.18px; }
+.body-sm{ font-size:15px; line-height:1.5; letter-spacing:-0.15px; }
+.caption{ font-size:13px; line-height:1.5; }
+.meta{ font-size:12px; line-height:1.5; letter-spacing:-0.12px; }
+
+/* mono is a labelling system ONLY — eyebrows, caps, micro tags */
+.mono-eyebrow{ font-family:var(--mono); font-size:13px; font-weight:400; line-height:1.5; }
+.mono-caps{ font-family:var(--mono); font-size:11px; font-weight:400; line-height:1.5; text-transform:uppercase; letter-spacing:.04em; }
+.mono-micro{ font-family:var(--mono); font-size:10px; font-weight:400; line-height:1.3; }
+
+@media (max-width:1440px){ .display-mega{ font-size:96px; letter-spacing:-4.2px; } }
+@media (max-width:768px){
+  .display-mega{ font-size:72px; letter-spacing:-3.0px; }
+  .display-xl{ font-size:52px; letter-spacing:-2.2px; }
+  .display-md{ font-size:36px; letter-spacing:-1.4px; }
+  .display-sm{ font-size:30px; letter-spacing:-1.0px; }
+  .heading-md{ font-size:26px; }
+}
+@media (max-width:480px){
+  .display-mega{ font-size:64px; letter-spacing:-2.4px; }
+}
+
+/* ============ SECTION POLARITY ============
+   The hard cut between dark and light IS the divider.
+   No rules, no gradients. */
+.sec{ padding-top:var(--s-section-lg); padding-bottom:var(--s-section-lg); }
+@media (max-width:768px){ .sec{ padding-top:var(--s-section); padding-bottom:var(--s-section); } }
+.sec-dark{ background:var(--canvas); color:var(--on-primary); }
+.sec-light{ background:var(--canvas-light); color:var(--ink); }
+.sec-paper{ background:var(--canvas-paper); color:var(--ink); }
+
+.eyebrow{ color:var(--mute); margin-bottom:var(--s-lg); display:block; }
+.sec-dark .eyebrow{ color:var(--mute); }
+.sec-light .eyebrow,.sec-paper .eyebrow{ color:var(--ink-soft); }
+.lede{ color:var(--ash); max-width:56ch; margin-top:var(--s-lg); }
+.sec-light .lede,.sec-paper .lede{ color:var(--ink-soft); }
+
+/* ============ NAV ============ */
+.nav{ position:sticky; top:0; z-index:100; background:var(--canvas); height:64px;
+  display:flex; align-items:center; justify-content:space-between; gap:var(--s-lg);
+  padding:0 var(--s-lg); }
+@media (min-width:1200px){ .nav{ padding:0 var(--s-xxl); } }
+.wordmark{ display:flex; align-items:center; gap:var(--s-xs); font-size:16px; font-weight:500; color:var(--on-primary); }
+.brand-dot{ width:12px; height:12px; border-radius:var(--r-full); background:var(--brand); flex:none; }
+.nav-menu{ display:flex; gap:var(--s-lg); }
+.nav-menu a{ font-size:16px; font-weight:400; color:var(--on-primary); padding:var(--s-xs) 0;
+  transition:color .18s var(--ease); }
+.nav-menu a:hover{ color:var(--ash); }
+@media (max-width:960px){ .nav-menu{ display:none; } }
+
+/* ============ NAV · MOBILE HAMBURGER (< 960px) ============ */
+.hamburger{ display:none; align-items:center; justify-content:center; width:44px; height:44px;
+  background:transparent; border:1px solid var(--hairline-soft); border-radius:var(--r-app-md);
+  color:var(--on-primary); cursor:pointer; flex:none; }
+@media (max-width:960px){ .hamburger{ display:inline-flex; } }
+.hamburger-icon{ position:relative; width:18px; height:12px; }
+.hamburger-icon span{ position:absolute; left:0; right:0; height:2px; background:currentColor;
+  transition:transform .2s var(--ease), opacity .2s var(--ease); }
+.hamburger-icon span:nth-child(1){ top:0; }
+.hamburger-icon span:nth-child(2){ top:5px; }
+.hamburger-icon span:nth-child(3){ top:10px; }
+.hamburger[aria-expanded="true"] .hamburger-icon span:nth-child(1){ transform:translateY(5px) rotate(45deg); }
+.hamburger[aria-expanded="true"] .hamburger-icon span:nth-child(2){ opacity:0; }
+.hamburger[aria-expanded="true"] .hamburger-icon span:nth-child(3){ transform:translateY(-5px) rotate(-45deg); }
+.mobile-sheet{ position:fixed; inset:64px 0 0 0; z-index:99; background:var(--canvas);
+  padding:var(--s-lg); opacity:0; transform:translateY(-8px); pointer-events:none;
+  transition:opacity .2s var(--ease), transform .2s var(--ease); }
+.mobile-sheet.open{ opacity:1; transform:none; pointer-events:auto; }
+.mobile-sheet ul{ display:flex; flex-direction:column; }
+.mobile-sheet a{ display:block; color:var(--on-primary); font-size:18px; font-weight:400;
+  padding:var(--s-sm) var(--s-xs); border-bottom:1px solid var(--hairline-soft); }
+@media (min-width:961px){ .mobile-sheet{ display:none; } }
+
+/* ============ BUTTONS ============ */
+.btn{ display:inline-flex; align-items:center; justify-content:center; gap:var(--s-xs);
+  height:44px; padding:var(--s-sm) var(--s-lg); border-radius:var(--r-full);
+  font-size:16px; font-weight:500; line-height:1.5; border:1px solid transparent; cursor:pointer;
+  font-family:var(--sans); transition:opacity .18s var(--ease), background .18s var(--ease), color .18s var(--ease); }
+@media (max-width:768px){ .btn{ height:48px; } }
+.btn-primary{ background:var(--canvas-light); color:var(--ink); border-color:var(--ink); }
+.btn-primary:hover{ background:var(--ash); }
+.btn-primary-on-light{ background:var(--ink); color:var(--on-primary); }
+.btn-primary-on-light:hover{ background:var(--ink-soft); }
+.btn-brand{ background:var(--brand); color:var(--ink); }
+.btn-brand:hover{ opacity:.88; }
+.btn-secondary-dark{ height:36px; padding:var(--s-sm) var(--s-md); border-radius:var(--r-app-md);
+  background:var(--canvas-soft); color:var(--ash); border:1px solid var(--hairline-soft);
+  font-size:13px; font-weight:500; line-height:1.3; letter-spacing:-0.13px; }
+.btn-secondary-dark:hover{ color:var(--on-primary); }
+@media (max-width:768px){ .btn-secondary-dark{ height:44px; } }
+
+/* ============ HERO ============ */
+.hero{ padding-top:var(--s-section-lg); padding-bottom:var(--s-section-lg); }
+.hero-inner{ max-width:20ch; }
+.hero .lede{ margin-top:var(--s-lg); }
+.hero-actions{ display:flex; gap:var(--s-sm); flex-wrap:wrap; margin-top:var(--s-xl); }
+.hero-meta{ display:flex; gap:var(--s-lg); flex-wrap:wrap; margin-top:var(--s-xxl); color:var(--mute); }
+
+/* ============ CARDS ============ */
+.card-dark{ background:var(--canvas-soft); color:var(--on-primary);
+  border:1px solid var(--hairline-soft); border-radius:var(--r-marketing); padding:var(--s-xl); }
+.card-light{ background:var(--canvas-light); color:var(--ink);
+  border:1px solid var(--hairline); border-radius:var(--r-marketing); padding:var(--s-xl); }
+.card-brand{ background:var(--brand); color:var(--ink);
+  border-radius:var(--r-marketing); padding:var(--s-xl); }
+.card-brand .mono-eyebrow,.card-brand .card-body{ color:var(--ink); }
+
+.card-eyebrow{ color:var(--mute); display:block; margin-bottom:var(--s-sm); }
+.card-dark .card-eyebrow{ color:var(--ash); }
+.card-light .card-eyebrow{ color:var(--ink-soft); }
+.card-title{ margin-bottom:var(--s-sm); }
+.card-body{ color:var(--ash); }
+.card-light .card-body{ color:var(--ink-soft); }
+
+.grid{ display:grid; gap:var(--s-lg); }
+.grid-2{ grid-template-columns:repeat(auto-fit,minmax(340px,1fr)); }
+.grid-3{ grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); }
+
+/* tag chips — mono-micro, pill */
+.tags{ display:flex; flex-wrap:wrap; gap:var(--s-xs); margin-top:var(--s-md); }
+.tag{ font-family:var(--mono); font-size:10px; line-height:1.3; padding:var(--s-xxs) var(--s-sm);
+  border-radius:var(--r-full); border:1px solid var(--hairline-soft); color:var(--ash); }
+.card-light .tag,.sec-light .tag,.sec-paper .tag{ border-color:var(--hairline); color:var(--ink-soft); }
+.card-brand .tag{ border-color:rgba(11,11,11,.3); color:var(--ink); }
+
+/* badges */
+.badge{ display:inline-flex; align-items:center; gap:var(--s-xxs);
+  font-size:13px; line-height:1.5; padding:var(--s-xxs) var(--s-sm); border-radius:var(--r-full); }
+.badge-neutral{ background:var(--canvas-light); color:var(--ink); }
+.badge-filled{ background:var(--ink); color:var(--on-primary); }
+.badge-outline{ border:1px solid var(--hairline-soft); color:var(--ash); }
+.sec-light .badge-outline,.sec-paper .badge-outline{ border-color:var(--hairline); color:var(--ink-soft); }
+
+/* status dot */
+.status{ display:inline-flex; align-items:center; gap:var(--s-xs); color:var(--ash); }
+.status .dot{ width:8px; height:8px; border-radius:var(--r-full); background:var(--success); flex:none; }
+
+/* ============ TABLE-STYLE LISTS ============ */
+.rows{ border-top:1px solid var(--hairline); }
+.sec-dark .rows{ border-top-color:var(--hairline-soft); }
+.row{ display:grid; grid-template-columns:minmax(140px,180px) 1fr; gap:var(--s-lg);
+  padding:var(--s-lg) 0; border-bottom:1px solid var(--hairline); }
+.sec-dark .row{ border-bottom-color:var(--hairline-soft); }
+@media (max-width:768px){ .row{ grid-template-columns:1fr; gap:var(--s-xs); } }
+.row-when{ color:var(--mute); }
+.sec-light .row-when,.sec-paper .row-when{ color:var(--ink-soft); }
+.row-title{ margin-bottom:var(--s-xxs); display:flex; align-items:center; gap:var(--s-sm); flex-wrap:wrap; }
+.row-org{ color:var(--mute); margin-bottom:var(--s-sm); }
+.sec-light .row-org,.sec-paper .row-org{ color:var(--ink-soft); }
+.row-desc{ color:var(--ink-soft); max-width:70ch; }
+.sec-dark .row-desc{ color:var(--ash); }
+
+/* ============ SKILLS ============ */
+.skill-row{ display:grid; grid-template-columns:minmax(200px,260px) 1fr; gap:var(--s-lg);
+  padding:var(--s-lg) 0; border-bottom:1px solid var(--hairline-soft); }
+@media (max-width:768px){ .skill-row{ grid-template-columns:1fr; gap:var(--s-sm); } }
+.skill-items{ display:flex; flex-wrap:wrap; gap:var(--s-xs); }
+
+/* ============ FORM ============ */
+.form{ max-width:560px; }
+.field{ margin-bottom:var(--s-md); }
+.field label{ display:block; color:var(--ink-soft); margin-bottom:var(--s-xs); }
+.field input,.field textarea{ width:100%; height:44px; padding:var(--s-sm) var(--s-md);
+  background:var(--canvas-light); color:var(--ink); border:1px solid var(--hairline);
+  border-radius:var(--r-app-xs); font-family:var(--sans); font-size:16px; line-height:1.5; }
+.field textarea{ height:auto; min-height:112px; resize:vertical; }
+.field input::placeholder,.field textarea::placeholder{ color:var(--mute); }
+.field input:focus,.field textarea:focus{ outline:2px solid var(--link-blue); outline-offset:0; border-color:var(--link-blue); }
+.form-actions{ display:flex; align-items:center; gap:var(--s-md); margin-top:var(--s-lg); flex-wrap:wrap; }
+.form-status{ color:var(--ink-soft); }
+.form-status .ok-mark{ color:var(--success); }
+
+/* contact links */
+.contact-list{ display:flex; flex-direction:column; gap:var(--s-sm); }
+.contact-list a{ display:inline-flex; align-items:center; gap:var(--s-xs); color:var(--ink-soft); }
+.contact-list a:hover{ color:var(--link-blue); }
+
+/* ============ FOOTER ============ */
+.footer{ background:var(--canvas); color:var(--on-primary);
+  padding:var(--s-section) var(--s-lg); }
+@media (min-width:1200px){ .footer{ padding-left:var(--s-xxl); padding-right:var(--s-xxl); } }
+.footer-grid{ max-width:var(--container); margin:0 auto; display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(160px,1fr)); gap:var(--s-xl); }
+.footer-col h4{ color:var(--mute); margin-bottom:var(--s-md); }
+.footer-col a{ display:block; color:var(--ash); font-size:13px; line-height:1.5; padding:var(--s-xxs) 0; }
+.footer-col a:hover{ color:var(--on-primary); }
+.footer-bottom{ max-width:var(--container); margin:var(--s-xl) auto 0; padding-top:var(--s-lg);
+  border-top:1px solid var(--hairline-soft); display:flex; justify-content:space-between;
+  align-items:center; gap:var(--s-md); flex-wrap:wrap; color:var(--mute); }
+
+/* ============ MOTION (restrained) ============ */
+.rv{ opacity:0; transform:translateY(12px); transition:opacity .5s var(--ease), transform .5s var(--ease); }
+.rv.in{ opacity:1; transform:none; }
+
+</style>
+</head>
+<body>
+
+<a href="#main" class="skip">Skip to content</a>
+
+<nav class="nav">
+  <a href="#home" class="wordmark"><span class="brand-dot" aria-hidden="true"></span>Nishant Pahwa</a>
+  <ul class="nav-menu">
+    <li><a href="#about">About</a></li>
+    <li><a href="#work">Work</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#skills">Skills</a></li>
+  </ul>
+  <div style="display:flex; align-items:center; gap:var(--s-sm);">
+    <a href="#contact" class="btn btn-secondary-dark">Get in touch</a>
+    <button type="button" class="hamburger" id="hamburger" aria-expanded="false" aria-controls="mobileSheet" aria-label="Open menu">
+      <span class="hamburger-icon" aria-hidden="true"><span></span><span></span><span></span></span>
+    </button>
+  </div>
+</nav>
+<div class="mobile-sheet" id="mobileSheet">
+  <ul>
+    <li><a href="#about">About</a></li>
+    <li><a href="#work">Work</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</div>
+
+<main id="main">
+
+  <!-- ===== HERO · dark ===== -->
+  <section id="home" class="sec-dark hero">
+    <div class="container">
+      <span class="mono-eyebrow eyebrow">Senior QA Analyst · AI/ML Researcher</span>
+      <h1 class="display-mega hero-inner">Nishant Pahwa</h1>
+      <p class="subtitle lede">I bridge the gap between raw data and real decisions — validating enterprise data pipelines and cloud environments by day, and applying NLP, LLMs, and reinforcement learning through my ongoing AI/ML research.</p>
+      <div class="hero-actions">
+        <a href="#work" class="btn btn-primary">View my work</a>
+        <a href="#contact" class="btn btn-secondary-dark">Get in touch</a>
+      </div>
+      <div class="hero-meta caption">
+        <span class="status"><span class="dot" aria-hidden="true"></span>Open to opportunities</span>
+        <span>M.Tech AI &amp; ML · BITS Pilani (WILP)</span>
+        <span>7+ years in QA</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== ABOUT · light (polarity flip) ===== -->
+  <section id="about" class="sec sec-light on-light">
+    <div class="container">
+      <span class="mono-eyebrow eyebrow">About</span>
+      <h2 class="display-xl">Bridging QA precision with applied AI.</h2>
+
+      <div class="grid grid-2" style="margin-top:var(--s-xxl)">
+        <div>
+          <p class="subtitle" style="margin-bottom:var(--s-md)">I'm <strong style="font-weight:500">Nishant</strong> — a QA professional with 7+ years of experience in software testing, specialising in data validation, API testing, functional and performance testing. Currently at PGD India, I handle end-to-end QA across complex data pipelines and cloud environments.</p>
+          <p class="subtitle">I'm pursuing my M.Tech in AI &amp; ML from BITS Pilani (WILP), with hands-on coursework in NLP Applications, Large Language Models &amp; GenAI, Conversational AI, and API-Driven Cloud Native Solutions — bridging deep QA expertise with growing AI/ML skills to contribute to data-quality, testing, and intelligent-system workflows.</p>
+        </div>
+        <div class="grid" style="align-content:start; gap:var(--s-md)">
+          <div class="card-light rv">
+            <span class="mono-caps card-eyebrow">Experience</span>
+            <div class="display-md">7+</div>
+            <p class="body-sm" style="color:var(--ink-soft)">Years in software testing &amp; data QA</p>
+          </div>
+          <div class="card-light rv">
+            <span class="mono-caps card-eyebrow">Delivered</span>
+            <div class="display-md">20+</div>
+            <p class="body-sm" style="color:var(--ink-soft)">Projects across enterprise domains</p>
+          </div>
+          <div class="card-light rv">
+            <span class="mono-caps card-eyebrow">Research</span>
+            <div class="display-md">6</div>
+            <p class="body-sm" style="color:var(--ink-soft)">AI/ML academic projects</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="tags" style="margin-top:var(--s-xl)">
+        <span class="tag">Python</span><span class="tag">SQL</span><span class="tag">Data Validation</span><span class="tag">API Testing</span>
+        <span class="tag">Functional &amp; Regression Testing</span><span class="tag">Performance Testing</span>
+        <span class="tag">NLP</span><span class="tag">LLMs</span><span class="tag">RAG</span><span class="tag">Conversational AI</span>
+        <span class="tag">Reinforcement Learning</span><span class="tag">Cloud &amp; APIs</span><span class="tag">Docker / Kubernetes</span><span class="tag">JIRA</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== WORK · dark (polarity flip) ===== -->
+  <section id="work" class="sec sec-dark">
+    <div class="container">
+      <span class="mono-eyebrow eyebrow">Selected Work</span>
+      <h2 class="display-xl">Things I've built, tested &amp; shipped.</h2>
+      <p class="subtitle lede">From enterprise data platforms to applied AI/ML research.</p>
+
+      <h3 class="mono-caps" style="color:var(--mute); margin:var(--s-xxl) 0 var(--s-lg)">Enterprise QA Engagements</h3>
+      <div class="grid grid-2">
+        <article class="card-dark rv">
+          <span class="mono-caps card-eyebrow">2.1 · Confidential</span>
+          <h4 class="heading-sm card-title">Gulf Food Delivery Platform</h4>
+          <p class="body-sm card-body">End-to-end data QA for a large-scale food delivery app serving Gulf-region clients. Validated real-time order pipelines, payment reconciliation, delivery tracking data, and user analytics.</p>
+          <div class="tags"><span class="tag">Data Testing</span><span class="tag">SQL</span><span class="tag">API Testing</span><span class="tag">Reconciliation</span></div>
+        </article>
+        <article class="card-dark rv">
+          <span class="mono-caps card-eyebrow">2.2 · Confidential</span>
+          <h4 class="heading-sm card-title">BookSphere — Social Reading App</h4>
+          <p class="body-sm card-body">QA on a social platform for book readers. Tested user graph pipelines, recommendation engine outputs, content moderation datasets, and engagement metrics.</p>
+          <div class="tags"><span class="tag">Data Testing</span><span class="tag">SQL</span><span class="tag">Recommendation QA</span></div>
+        </article>
+        <article class="card-dark rv">
+          <span class="mono-caps card-eyebrow">2.3 · Internal</span>
+          <h4 class="heading-sm card-title">College Web Platform</h4>
+          <p class="body-sm card-body">Project coordinator and lead QA engineer for a multi-department college website — test planning, student-data validation, CMS workflows, full release cycles.</p>
+          <div class="tags"><span class="tag">QA Testing</span><span class="tag">SQL</span><span class="tag">CMS Testing</span></div>
+        </article>
+        <article class="card-dark rv">
+          <span class="mono-caps card-eyebrow">2.4 · Confidential</span>
+          <h4 class="heading-sm card-title">Healthcare &amp; Digital Marketing Data QA</h4>
+          <p class="body-sm card-body">Led end-to-end data testing across healthcare and marketing platforms — patient-data pipelines, campaign analytics, KPI dashboards, ETL processes.</p>
+          <div class="tags"><span class="tag">ETL Testing</span><span class="tag">KPI Validation</span><span class="tag">Analytics QA</span></div>
+        </article>
+      </div>
+
+      <h3 class="mono-caps" style="color:var(--mute); margin:var(--s-xxl) 0 var(--s-lg)">AI/ML Academic Projects — BITS Pilani</h3>
+      <div class="grid grid-3">
+        <!-- single brand-filled card anchors the section (one per viewport) -->
+        <article class="card-brand rv">
+          <span class="mono-caps card-eyebrow" style="color:var(--ink)">2.5 · Academic</span>
+          <h4 class="heading-sm card-title">RAG Pipeline &amp; NLP Applications</h4>
+          <p class="body-sm card-body">Studied Naive, Graph, and Agentic RAG architectures. Applied RAGAS-style evaluation (context precision, faithfulness) and retrieval ranking metrics (MRR, nDCG) to QA systems.</p>
+          <div class="tags"><span class="tag">RAG</span><span class="tag">NLP</span><span class="tag">RAGAS</span><span class="tag">MRR / nDCG</span></div>
+        </article>
+        <article class="card-dark rv">
+          <span class="mono-caps card-eyebrow">2.6 · Academic</span>
+          <h4 class="heading-sm card-title">Conversational AI System Design</h4>
+          <p class="body-sm card-body">Designed intent classification and slot-filling pipelines with BIO tagging. Evaluated dialogue systems using Slot Error Rate (SER) and knowledge graph integration for task-based dialogue.</p>
+          <div class="tags"><span class="tag">Intent Classification</span><span class="tag">Slot Filling</span><span class="tag">BIO Tagging</span></div>
+        </article>
+        <article class="card-dark rv">
+          <span class="mono-caps card-eyebrow">2.7 · Academic</span>
+          <h4 class="heading-sm card-title">Image Classification — Deep Learning</h4>
+          <p class="body-sm card-body">Built and compared CNN models with transfer learning using Python and deep learning libraries, evaluated using standard classification metrics.</p>
+          <div class="tags"><span class="tag">CNN</span><span class="tag">Transfer Learning</span><span class="tag">Python</span></div>
+        </article>
+        <article class="card-dark rv">
+          <span class="mono-caps card-eyebrow">2.8 · Academic</span>
+          <h4 class="heading-sm card-title">Neural Networks</h4>
+          <p class="body-sm card-body">Implemented classification models using MLP and linear models — covering preprocessing, feature scaling, and performance evaluation.</p>
+          <div class="tags"><span class="tag">MLP</span><span class="tag">Feature Scaling</span><span class="tag">Model Evaluation</span></div>
+        </article>
+        <article class="card-dark rv">
+          <span class="mono-caps card-eyebrow">2.9 · Academic</span>
+          <h4 class="heading-sm card-title">Reinforcement Learning</h4>
+          <p class="body-sm card-body">Implemented Multi-Armed Bandit, Q-learning, DQN, and DDQN algorithms, applied to decision optimisation problems.</p>
+          <div class="tags"><span class="tag">Q-Learning</span><span class="tag">DQN</span><span class="tag">DDQN</span><span class="tag">Bandits</span></div>
+        </article>
+        <article class="card-dark rv">
+          <span class="mono-caps card-eyebrow">2.10 · Academic</span>
+          <h4 class="heading-sm card-title">Data Pipeline for ML</h4>
+          <p class="body-sm card-body">Built an end-to-end pipeline covering data ingestion, validation, and feature engineering for machine learning workflows.</p>
+          <div class="tags"><span class="tag">Data Ingestion</span><span class="tag">Validation</span><span class="tag">Feature Engineering</span></div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== EXPERIENCE · paper (polarity flip) ===== -->
+  <section id="experience" class="sec sec-paper on-light">
+    <div class="container">
+      <span class="mono-eyebrow eyebrow">Journey</span>
+      <h2 class="display-xl">Experience &amp; education.</h2>
+
+      <div class="rows" style="margin-top:var(--s-xxl)">
+        <div class="row rv">
+          <div class="row-when mono-eyebrow">Dec 2021 – Present</div>
+          <div>
+            <h3 class="heading-sm row-title">Senior Associate QA — L1 <span class="badge badge-filled caption">Current</span></h3>
+            <div class="row-org caption">PGD India</div>
+            <p class="body-sm row-desc">Managing end-to-end QA activities including test case design and execution across multiple data sources. Performing data validation and analysis to ensure accuracy, completeness, and consistency — working extensively with SQL for data extraction, comparison, and validation. Supporting migration projects, system validation, and performance testing. Improved QA processes, helping reduce testing timelines by approximately 20%.</p>
+          </div>
+        </div>
+        <div class="row rv">
+          <div class="row-when mono-eyebrow">Ongoing</div>
+          <div>
+            <h3 class="heading-sm row-title">M.Tech — Artificial Intelligence &amp; Machine Learning <span class="badge badge-outline caption">Ongoing</span></h3>
+            <div class="row-org caption">BITS Pilani — Work Integrated Learning Programmes (WILP)</div>
+            <p class="body-sm row-desc">Current modules: NLP Applications · Large Language Models &amp; GenAI · Conversational AI · API-Driven Cloud Native Solutions.</p>
+          </div>
+        </div>
+        <div class="row rv">
+          <div class="row-when mono-eyebrow">Mar 2021 – Dec 2021</div>
+          <div>
+            <h3 class="heading-sm row-title">Quality Analyst</h3>
+            <div class="row-org caption">Sterco Digitex</div>
+            <p class="body-sm row-desc">Managed QA activities for multiple web projects and ensured timely delivery. Coordinated between clients and development teams to align on requirements and issue resolution. Conducted usability testing and streamlined bug tracking, reducing defect turnaround time.</p>
+          </div>
+        </div>
+        <div class="row rv">
+          <div class="row-when mono-eyebrow">Jul 2019 – Feb 2021</div>
+          <div>
+            <h3 class="heading-sm row-title">Quality Analyst</h3>
+            <div class="row-org caption">Fluper Ltd</div>
+            <p class="body-sm row-desc">Worked on web and mobile applications across multiple domains. Performed regression testing, API testing, and cross-platform compatibility testing using Postman and JMeter.</p>
+          </div>
+        </div>
+        <div class="row rv">
+          <div class="row-when mono-eyebrow">Apr 2018 – Jun 2019</div>
+          <div>
+            <h3 class="heading-sm row-title">Software Test Engineer</h3>
+            <div class="row-org caption">Kalaage Creations</div>
+            <p class="body-sm row-desc">Performed functional, regression, and GUI testing on web applications. Conducted browser compatibility testing and tracked defects using JIRA.</p>
+          </div>
+        </div>
+        <div class="row rv">
+          <div class="row-when mono-eyebrow">2017</div>
+          <div>
+            <h3 class="heading-sm row-title">B.Tech — Computer Science &amp; Engineering</h3>
+            <div class="row-org caption">Chandigarh Engineering College</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== SKILLS · dark (polarity flip) ===== -->
+  <section id="skills" class="sec sec-dark">
+    <div class="container">
+      <span class="mono-eyebrow eyebrow">Expertise</span>
+      <h2 class="display-xl">Skills &amp; tools.</h2>
+
+      <div style="margin-top:var(--s-xxl); border-top:1px solid var(--hairline-soft)">
+        <div class="skill-row rv">
+          <h3 class="heading-sm">NLP, LLM &amp; AI Systems</h3>
+          <div class="skill-items">
+            <span class="tag">NLP fundamentals (NER, sentiment analysis, RAG, QA systems)</span>
+            <span class="tag">LLM concepts (prompt engineering, fine-tuning, RLHF)</span>
+            <span class="tag">Conversational AI (intent classification, slot filling, dialogue systems)</span>
+            <span class="tag">API-driven ML pipelines</span>
+          </div>
+        </div>
+        <div class="skill-row rv">
+          <h3 class="heading-sm">Machine Learning &amp; AI</h3>
+          <div class="skill-items">
+            <span class="tag">Neural Networks (CNN, MLP)</span><span class="tag">Model Training &amp; Evaluation</span>
+            <span class="tag">SEMMA / CRISP-DM</span><span class="tag">MLOps basics</span>
+            <span class="tag">Reinforcement Learning (Q-learning, DQN)</span>
+          </div>
+        </div>
+        <div class="skill-row rv">
+          <h3 class="heading-sm">Cloud &amp; API</h3>
+          <div class="skill-items">
+            <span class="tag">REST API design (OpenAPI/Swagger)</span><span class="tag">Microservices concepts</span>
+            <span class="tag">Docker/Kubernetes basics</span><span class="tag">AWS S3</span>
+            <span class="tag">Azure Blob Storage</span><span class="tag">Cloud-native fundamentals</span>
+          </div>
+        </div>
+        <div class="skill-row rv">
+          <h3 class="heading-sm">Testing &amp; QA</h3>
+          <div class="skill-items">
+            <span class="tag">API Testing</span><span class="tag">Functional &amp; Regression Testing</span>
+            <span class="tag">Data Validation &amp; Testing</span><span class="tag">Performance Testing</span>
+            <span class="tag">Defect Management</span>
+          </div>
+        </div>
+        <div class="skill-row rv" style="border-bottom:none">
+          <h3 class="heading-sm">Programming &amp; Tools</h3>
+          <div class="skill-items">
+            <span class="tag">Python</span><span class="tag">SQL</span><span class="tag">NumPy</span><span class="tag">Pandas</span>
+            <span class="tag">Matplotlib</span><span class="tag">scikit-learn</span><span class="tag">Keras / PyTorch (basic)</span>
+            <span class="tag">Postman</span><span class="tag">JMeter</span><span class="tag">JIRA</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CONTACT · light (polarity flip) ===== -->
+  <section id="contact" class="sec sec-light on-light">
+    <div class="container">
+      <span class="mono-eyebrow eyebrow">Get in Touch</span>
+      <h2 class="display-xl">Let's build something that actually works.</h2>
+      <p class="subtitle lede">Whether it's a data engineering challenge, an AI/ML project, or a QA engagement — reach out.</p>
+
+      <div class="grid grid-2" style="margin-top:var(--s-xxl)">
+        <div>
+          <span class="mono-caps" style="color:var(--ink-soft); display:block; margin-bottom:var(--s-md)">Direct</span>
+          <div class="contact-list subtitle">
+            <a href="mailto:nishant.pahwa@publicisgroupe.com">nishant.pahwa@publicisgroupe.com</a>
+            <a href="tel:+919518047082">+91-9518047082</a>
+            <a href="https://www.linkedin.com/in/n-p-90625722a" target="_blank" rel="noopener">LinkedIn ↗</a>
+          </div>
+        </div>
+
+        <form class="form" id="contactForm">
+          <div class="field">
+            <label for="name" class="mono-caps">Name</label>
+            <input id="name" type="text" required placeholder="Your name">
+          </div>
+          <div class="field">
+            <label for="email" class="mono-caps">Email</label>
+            <input id="email" type="email" required placeholder="you@example.com">
+          </div>
+          <div class="field">
+            <label for="message" class="mono-caps">Message</label>
+            <textarea id="message" rows="4" required placeholder="What's this about?"></textarea>
+          </div>
+          <div class="form-actions">
+            <button type="submit" class="btn btn-primary-on-light">Send Message</button>
+            <span class="form-status caption" id="formStatus"></span>
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="footer">
+  <div class="footer-grid">
+    <div class="footer-col">
+      <h4 class="mono-caps">Navigate</h4>
+      <a href="#home">Home</a><a href="#about">About</a><a href="#work">Work</a>
+    </div>
+    <div class="footer-col">
+      <h4 class="mono-caps">More</h4>
+      <a href="#experience">Experience</a><a href="#skills">Skills</a><a href="#contact">Contact</a>
+    </div>
+    <div class="footer-col">
+      <h4 class="mono-caps">Contact</h4>
+      <a href="mailto:nishant.pahwa@publicisgroupe.com">Email</a>
+      <a href="tel:+919518047082">Phone</a>
+      <a href="https://www.linkedin.com/in/n-p-90625722a" target="_blank" rel="noopener">LinkedIn</a>
+    </div>
+    <div class="footer-col">
+      <h4 class="mono-caps">Focus</h4>
+      <a href="#skills">Data Quality &amp; QA</a>
+      <a href="#skills">AI / Machine Learning</a>
+      <a href="#skills">Cloud &amp; APIs</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span class="meta" id="year">© 2026 Nishant Pahwa</span>
+    <span class="wordmark caption"><span class="brand-dot" aria-hidden="true"></span>Nishant Pahwa</span>
+  </div>
+</footer>
+
+<script>
+document.getElementById('year').textContent = '© ' + new Date().getFullYear() + ' Nishant Pahwa';
+
+const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+const items = document.querySelectorAll('.rv');
+if (reduce) { items.forEach(el => el.classList.add('in')); }
+else {
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+  items.forEach(el => io.observe(el));
+}
+
+const hamburger = document.getElementById('hamburger');
+const mobileSheet = document.getElementById('mobileSheet');
+function closeSheet() { mobileSheet.classList.remove('open'); hamburger.setAttribute('aria-expanded', 'false'); hamburger.setAttribute('aria-label', 'Open menu'); }
+function openSheet() { mobileSheet.classList.add('open'); hamburger.setAttribute('aria-expanded', 'true'); hamburger.setAttribute('aria-label', 'Close menu'); }
+hamburger.addEventListener('click', () => { mobileSheet.classList.contains('open') ? closeSheet() : openSheet(); });
+mobileSheet.querySelectorAll('a').forEach(a => a.addEventListener('click', closeSheet));
+document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && mobileSheet.classList.contains('open')) { closeSheet(); hamburger.focus(); } });
+
+const form = document.getElementById('contactForm');
+const status = document.getElementById('formStatus');
+form.addEventListener('submit', (e) => {
+  e.preventDefault();
+  status.textContent = 'Sending…';
+  setTimeout(() => { status.innerHTML = '<span class="ok-mark">✓</span> Message sent — I\'ll reply within 24 hours.'; form.reset(); }, 700);
+});
+</script>
+</body>
+</html>
