@@ -8,7 +8,7 @@ const nextConfig: NextConfig = {
   },
   // Static export for GitHub Pages
   output: "export",
-  basePath: "",
+  basePath: "/Portfolio",
   trailingSlash: true,
 };
 
