@@ -6,7 +6,7 @@ export const PROFILE = {
   name: "Nishant Pahwa",
   initials: "NP",
   role: "Data Engineer",
-  location: "Chandigarh, India",
+  location: "Gurgaon, India",
   timezone: "IST",
   /** Rendered as three masked lines that rise into place. */
   headlineLines: [
@@ -19,8 +19,8 @@ export const PROFILE = {
     "Data Engineer · 7+ yrs · Azure Databricks Lakehouse · PySpark · Delta Lake · Applied AI/ML",
   searchPlaceholder: "Search projects, skills, tools…",
   current: {
-    organisation: "Publicis Groupe",
-    unit: "(PGD India)",
+    organisation: "One of the world's biggest advertising media companies",
+    unit: "(Global presence)",
     period: "Dec 2021 – Present",
   },
   availability:

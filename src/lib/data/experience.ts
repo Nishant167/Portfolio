@@ -4,7 +4,7 @@ import type { EarlierRole, Role } from "@/lib/types";
 export const PRIMARY_ROLES: Role[] = [
   {
     role: "Data Engineer",
-    organisation: "Publicis Groupe (PGD India)",
+    organisation: "One of the world's biggest advertising media companies",
     period: "Dec 2021 – Present",
     focus:
       "Azure Databricks Lakehouse, PySpark ETL, Delta Lake, reconciliation tooling and cloud migration data validation.",
@@ -41,12 +41,12 @@ export const PRIMARY_ROLES: Role[] = [
 export const EARLIER_ROLES: EarlierRole[] = [
   {
     role: "Quality Analyst",
-    organisation: "Fluper Ltd",
+    organisation: "Web Development Company",
     period: "Jul 2019 – Feb 2021",
   },
   {
     role: "Quality Analyst",
-    organisation: "Sterco Digitex",
+    organisation: "App Development Company",
     period: "Mar 2021 – Dec 2021",
   },
   {

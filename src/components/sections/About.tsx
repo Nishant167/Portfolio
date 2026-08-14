@@ -38,7 +38,7 @@ export function About() {
             7+ years building and validating enterprise-scale data platforms.
             Currently part of the data engineering team at{" "}
             <strong className="font-semibold text-ink">
-              Publicis Groupe (PGD India)
+              one of the world's biggest advertising media companies
             </strong>
             , building Azure Databricks Lakehouse architecture end-to-end:
             PySpark pipelines, Delta Lake tables and Medallion architecture data
