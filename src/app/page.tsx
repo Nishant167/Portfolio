@@ -6,6 +6,7 @@ import { Experience } from "@/components/sections/Experience";
 import { KpiShelf } from "@/components/sections/KpiShelf";
 import { OverviewHero } from "@/components/sections/OverviewHero";
 import { Projects } from "@/components/sections/Projects";
+import { Services } from "@/components/sections/Services";
 import { Skills } from "@/components/sections/Skills";
 import { TechMarquee } from "@/components/sections/TechMarquee";
 
@@ -18,6 +19,7 @@ export default function Home() {
         <About />
         <Experience />
         <Skills />
+        <Services />
         <Projects />
         <TechMarquee />
         <Contact />

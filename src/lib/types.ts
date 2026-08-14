@@ -93,6 +93,13 @@ export interface SkillMixSlice {
   color: string;
 }
 
+export interface Service {
+  name: string;
+  description: string;
+  icon: LucideIcon;
+  accent: Accent;
+}
+
 export interface ContactLink {
   label: string;
   handle: string;
