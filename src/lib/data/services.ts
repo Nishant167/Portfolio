@@ -5,8 +5,6 @@ import {
   Brain,
   CheckCircle,
   Zap,
-  Palette,
-  Briefcase,
 } from "lucide-react";
 
 import type { Service } from "@/lib/types";
@@ -52,20 +50,6 @@ export const SERVICES: Service[] = [
     description:
       "Data validation, reconciliation automation, and integrity testing for large-scale datasets",
     icon: Zap,
-    accent: "forest",
-  },
-  {
-    name: "Design & UI/UX",
-    description:
-      "User-centric design, wireframing, prototyping, and visual design for web and mobile applications",
-    icon: Palette,
-    accent: "terracotta",
-  },
-  {
-    name: "Portfolio Development",
-    description:
-      "Custom portfolio websites and personal branding solutions that showcase your professional work",
-    icon: Briefcase,
     accent: "forest",
   },
 ];

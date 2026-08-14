@@ -12,12 +12,12 @@ export function Services() {
     >
       <Panel as="article" className="p-6 lg:p-7">
         <div className="mb-6">
-          <p className="label-mono text-muted">Services</p>
+          <p className="label-mono text-muted">Expertise</p>
           <h3
             id="services-heading"
             className="mt-1.5 text-[26px] leading-tight font-extrabold lg:text-[28px]"
           >
-            What I can build for you
+            What I specialize in
           </h3>
         </div>
 
